@@ -586,7 +586,7 @@ class chatgpt(BaseLLM):
             # 使用统一的JSON解析逻辑
             try:
                 if function_full_response:
-                    function_parameter = parse_continuous_json(function_full_response, function_call_name)
+                    function_parameter = parse_continuous_json(function_full_response, function_call_name, function_call_id)
             except Exception as e:
                 self.logger.error(f"解析JSON失败: {e}")
                 # 保持原始工具调用

@@ -904,7 +904,7 @@ def parse_function_xml(xml_content: str, check_line_start: bool = True) -> List[
 
     return result_functions
 
-def parse_continuous_json(json_str: str, function_name: str = "") -> List[Dict[str, Any]]:
+def parse_continuous_json(json_str: str, function_name: str = "", function_call_id: str = "") -> List[Dict[str, Any]]:
     """
     解析JSON字符串，无论是单个JSON对象还是多个连续的JSON对象
     都能正确解析并转换为结构化的函数调用格式列表
@@ -922,11 +922,10 @@ def parse_continuous_json(json_str: str, function_name: str = "") -> List[Dict[s
     # 尝试直接解析为单个JSON
     try:
         json_obj = json.loads(json_str)
-        tool_id = function_name + "_single" if function_name else "tool_single"
         return [{
             'function_name': function_name or "default_function",
             'parameter': json_obj,
-            'function_call_id': tool_id
+            'function_call_id': function_call_id
         }]
     except json.JSONDecodeError:
         # 如果不是单个JSON，尝试解析为连续JSON

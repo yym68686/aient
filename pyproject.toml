@@ -1,6 +1,6 @@
 [project]
 name = "aient"
-version = "1.2.55"
+version = "1.2.56"
 description = "Aient: The Awakening of Agent."
 readme = "README.md"
 requires-python = ">=3.11"
